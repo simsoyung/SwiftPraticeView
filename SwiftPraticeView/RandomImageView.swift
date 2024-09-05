@@ -33,7 +33,7 @@ struct RandomImageView: View {
         ScrollView {
             VStack {
                 ForEach(0..<title.count, id: \.self) { item in
-                    Text(title[item])
+                    Text(title[0])
                         .font(.title)
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
