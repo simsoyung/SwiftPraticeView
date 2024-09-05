@@ -11,7 +11,7 @@ import Kingfisher
 
 struct Banner: Hashable, Identifiable {
     let id = UUID()
-    var url = "https://picsum.photos/id/\(Int.random(in: 1...300))/200/300"
+    var url = "https://picsum.photos/id/\(Int.random(in: 1...250))/200/300"
     
     var urlFormat: URL {
         return URL(string: url) ?? URL(string: "")!
@@ -20,6 +20,7 @@ struct Banner: Hashable, Identifiable {
 
 struct RandomImageView: View {
     @State private var titleText : [String] = ["첫번째 섹션", "두번째 섹션", "세번째 섹션", "네번째 섹션"]
+    @State private var banners: [Banner] = (0..<10).map { _ in Banner() }
     
     var body: some View {
         NavigationView {
@@ -29,21 +30,23 @@ struct RandomImageView: View {
             .navigationTitle("My Random Image")
         }
     }
-        func horizontalBannerView(_ title: [String]) -> some View {
+    
+    func horizontalBannerView(_ title: [String]) -> some View {
         ScrollView {
-            VStack {
-                ForEach(0..<title.count, id: \.self) { item in
-                    Text(title[0])
+            ForEach(0..<title.count, id: \.self) { index in
+                VStack {
+                    Text(title[index])
                         .font(.title)
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(0..<11, id: \.self){ item in
+                            ForEach(banners, id: \.id) { banner in
                                 NavigationLink {
-                                    NavigationLazyView(DetailImageView())
+                                    DetailImageView(sectionText: title[index], randomImage: banner)
                                 } label: {
-                                    bannerView(Banner())
+                                    bannerView(banner)
                                 }
                             }
                         }
@@ -54,6 +57,7 @@ struct RandomImageView: View {
             }
         }
     }
+    
     func bannerView(_ banner: Banner?) -> some View {
         HStack {
             if let imageURL = banner {
@@ -86,8 +90,8 @@ struct NavigationLazyView<Content: View>: View {
 
 struct DetailImageView: View {
     
-    @Binding var sectionText: [String]
-    @Binding var randomImage: Banner
+    var sectionText: String
+    var randomImage: Banner
     
     var body: some View {
         VStack{
@@ -96,7 +100,7 @@ struct DetailImageView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 200, height: 400)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
-            Text(sectionText[0])
+            Text(sectionText)
         }
     }
     

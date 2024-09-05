@@ -14,6 +14,7 @@
 		465340FD2C8714B900F2FDB7 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465340FC2C8714B900F2FDB7 /* CoinView.swift */; };
 		465341012C886CFB00F2FDB7 /* RandomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465341002C886CFB00F2FDB7 /* RandomImageView.swift */; };
 		465341042C88849900F2FDB7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 465341032C88849900F2FDB7 /* Kingfisher */; };
+		465341062C89959300F2FDB7 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465341052C89959300F2FDB7 /* MovieView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		465340EB2C85C8A400F2FDB7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		465340FC2C8714B900F2FDB7 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		465341002C886CFB00F2FDB7 /* RandomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageView.swift; sourceTree = "<group>"; };
+		465341052C89959300F2FDB7 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				465340E82C85C8A400F2FDB7 /* Assets.xcassets */,
 				465340EA2C85C8A400F2FDB7 /* Preview Content */,
 				465341002C886CFB00F2FDB7 /* RandomImageView.swift */,
+				465341052C89959300F2FDB7 /* MovieView.swift */,
 			);
 			path = SwiftPraticeView;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				465341062C89959300F2FDB7 /* MovieView.swift in Sources */,
 				465340FD2C8714B900F2FDB7 /* CoinView.swift in Sources */,
 				465341012C886CFB00F2FDB7 /* RandomImageView.swift in Sources */,
 				465340E72C85C8A100F2FDB7 /* ContentView.swift in Sources */,
