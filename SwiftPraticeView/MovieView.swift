@@ -37,6 +37,11 @@ struct MovieView: View {
             .navigationTitle("영화 검색")
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $text, placement: .navigationBarDrawer, prompt: "영화를 검색해보세요")
+            .onSubmit(of: .search) {
+                if !text.isEmpty {
+                    list = filterUser
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("추가"){
@@ -44,7 +49,6 @@ struct MovieView: View {
                     }
                 }
             }
-
         }
     }
 }
@@ -64,7 +68,7 @@ struct SearchDetailView: View {
     @Binding var count: String
 
     var body: some View {
-        Text("SearchDetailView: \(genre)")
+        Text("SearchDetailView: \(genre), \(count)")
     }
 }
 

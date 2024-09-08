@@ -8,15 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct Market: Hashable, Codable {
+struct Market: Hashable, Codable, Identifiable {
+    let id = UUID()
     let market, koreanName, englishName: String
-
+    var like = false
 
     enum CodingKeys: String, CodingKey {
         case market
         case koreanName = "korean_name"
         case englishName = "english_name"
-    
     }
 }
 
@@ -114,32 +114,31 @@ struct CoinView: View {
     //func
     func listView() -> some View {
         LazyVStack {
-            ForEach(market.filter{ $0.koreanName.hasPrefix(searchText) }, id: \.self) {
-                item in
-                rowView(item)
+            ForEach(Array(market.enumerated()).filter { $0.element.koreanName.hasPrefix(searchText) }, id: \.element.id) { index, _ in
+                rowView(item: $market[index]) 
             }
         }
     }
-    func rowView(_ item: Market) -> some View {
+    func rowView(item: Binding<Market>) -> some View {
         HStack {
             Image(systemName: "dollarsign.circle.fill")
                 .font(.system(size: 40))
                 .foregroundColor(.green)
             VStack(alignment: .leading) {
-                Text(item.koreanName)
+                Text(item.wrappedValue.koreanName)
                     .fontWeight(.bold)
-                Text(item.market)
+                Text(item.wrappedValue.market)
                     .font(.caption)
                     .foregroundStyle(.gray)
             }
             Spacer()
-            Text(item.englishName)
+            Text(item.wrappedValue.koreanName)
                 .fontWeight(.medium)
                 .font(.system(size: 14))
             Button {
-                like.toggle()
+                item.like.wrappedValue.toggle()
             } label: {
-                Image(systemName: like ? "star.fill" : "star")
+                Image(systemName: item.wrappedValue.like ? "star.fill" : "star")
                     .foregroundStyle(.pink)
             }
 
